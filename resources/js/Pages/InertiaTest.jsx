@@ -20,6 +20,10 @@ export default function InertiaTest() {
 
       <Link href={ route('inertia.index') }>
           名前付きルートのテスト
+      </Link><br />
+
+      <Link href={ route('inertia.show', { id: 50 }) }>
+          ルートパラメータのテスト
       </Link>
     </>
   )
