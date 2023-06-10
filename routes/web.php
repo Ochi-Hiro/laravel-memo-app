@@ -22,6 +22,10 @@ Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])
 ->name('inertia.show');
 
 
+//storeテスト
+Route::post('/inertia', [InertiaTestController::class, 'store'])
+->name('inertia.store');
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
