@@ -1,7 +1,10 @@
 import { useState } from 'react'
-import { router } from '@inertiajs/react'
+import { router, usePage } from '@inertiajs/react'
 
 export default function Edit() {
+
+  const { errors } = usePage().props
+
   const [values, setValues] = useState({
     title: "",
     content: ""
@@ -34,6 +37,7 @@ export default function Edit() {
           onChange={ handleChange }
           className="border-gray-300 m-3"
         />
+        {errors.title && <div className="text-rose-500 ml-3">{errors.title}</div>}
         <br/>
         <label htmlFor="content" className="border-gray-300 ml-3">content:</label>
         <input 
@@ -44,6 +48,7 @@ export default function Edit() {
           onChange={ handleChange }
           className="border-gray-300 m-3"
         />
+        {errors.content && <div className="text-rose-500 ml-3">{errors.content}</div>}
         <br />
         <button 
           type="submit"
