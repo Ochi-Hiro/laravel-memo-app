@@ -39,6 +39,10 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'flash' => [
+                'message' => fn() => $request -> session() -> get('message')
+                // Fn()挟むことで部分リロード。セッションからmessageの取得を行う。
+            ],
         ]);
     }
 }
