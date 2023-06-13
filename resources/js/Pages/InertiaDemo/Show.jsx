@@ -1,11 +1,12 @@
 import { Link } from '@inertiajs/react';
 
-export default function Show({id}) {
+export default function Show({ memo }) {
     return (
         <>
-            <p className='p-6 text-gray-900'>渡されたルートパラメータ : {id}</p>
+            <div>{ memo.title }</div>
+            <div>{ memo.content }</div>
 
-            <Link href="/inertia-test" className='p-6 text-gray-900'>
+            <Link href="/inertia/index" className='p-6 text-gray-900'>
                 画面戻る
             </Link><br />
         </>
