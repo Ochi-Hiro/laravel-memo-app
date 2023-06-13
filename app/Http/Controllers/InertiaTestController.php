@@ -10,7 +10,9 @@ class InertiaTestController extends Controller
 {
     public function index()
     {
-        return Inertia::render('InertiaDemo/Index');
+        return Inertia::render('InertiaDemo/Index',[
+            'memos' => InertiaTest::all()
+        ]);
     }
 
     public function create()
@@ -21,8 +23,10 @@ class InertiaTestController extends Controller
 
     public function show($id)
     {
+        $memo = InertiaTest::findOrFail($id);
+
         return Inertia::render('InertiaDemo/Show',[
-            'id' => $id
+            'memo' => $memo
         ]);
     }
 

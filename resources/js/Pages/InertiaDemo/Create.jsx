@@ -26,7 +26,7 @@ export default function Edit() {
 
   return (
     <>
-      <p className='p-3 mt-3 text-gray-900'>create page</p>
+      <div className='text-2xl text-gray-900 m-auto mt-12 text-center'>InertiaTest CreatePage</div>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="title" className="border-gray-300 ml-3">title:</label>
         <input 
