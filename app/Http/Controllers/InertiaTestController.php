@@ -10,7 +10,7 @@ class InertiaTestController extends Controller
 {
     public function index()
     {
-        return Inertia::render('InertiaDemo/Index',[
+        return Inertia::render('InertiaDemo/index',[
             'memos' => InertiaTest::all()
         ]);
     }
@@ -44,7 +44,18 @@ class InertiaTestController extends Controller
 
         return to_route('inertia.index')
         ->with([
-            'message' => '登録しました'
+            'message' => 'メモを登録しました'
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $memo = InertiaTest::findOrFail($id);
+        $memo->delete();
+
+        return to_route('inertia.index')
+        ->with([
+            'message' => 'メモを削除しました'
         ]);
     }
 }
