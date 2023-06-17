@@ -6,34 +6,40 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 
-
-Route::get('/inertia-test', function () {
-    return Inertia::render('InertiaTest');
+Route::middleware('auth')->group(function () {
+    Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
+    Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
+    Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
+    Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
+    Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
 });
 
+// Route::get('/inertia-test', function () {
+//     return Inertia::render('InertiaTest');
+// });
 
 // 名前付きルートテスト
-Route::get('/inertia/index', [InertiaTestController::class, 'index'])
-->name('inertia.index');
+// Route::get('/inertia/index', [InertiaTestController::class, 'index'])
+// ->middleware(['auth', 'verified'])->name('inertia.index');
 
 
 // createテスト
-Route::get('/inertia/create', [InertiaTestController::class, 'create'])
-->name('inertia.create');
+// Route::get('/inertia/create', [InertiaTestController::class, 'create'])
+// ->name('inertia.create');
 
 
 // ルートパラメータテスト
-Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])
-->name('inertia.show');
+// Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])
+// ->name('inertia.show');
 
 
 // storeテスト
-Route::post('/inertia', [InertiaTestController::class, 'store'])
-->name('inertia.store');
+// Route::post('/inertia', [InertiaTestController::class, 'store'])
+// ->name('inertia.store');
 
 // delete
-Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])
-->name('inertia.delete');
+// Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])
+// ->name('inertia.delete');
 
 
 
@@ -46,9 +52,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
