@@ -12,16 +12,10 @@ export default function Index({ memos,auth }) {
       <AuthenticatedLayout
         user={auth.user}
         header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">InertiaTest IndexPage</h2>}
-      //   subbutton={ <Link href="/inertia/create" className='text-indigo-500 underline underline-offset-2'>
-      //   Jump CreatePage
-      // </Link> }
       >
       
         <Head title="Index" />
         
-        {/* <div className='text-3xl text-gray-900 m-auto mt-12 text-center'>
-          InertiaTest IndexPage
-        </div> */}
         <div className="flex mt-6">
           <div className='text-xl ml-8'>
             <Link href="/inertia/create" className='text-indigo-500 underline underline-offset-2 left: 2.75rem;'>
