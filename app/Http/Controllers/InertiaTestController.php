@@ -11,7 +11,8 @@ class InertiaTestController extends Controller
     public function index()
     {
         return Inertia::render('InertiaDemo/index',[
-            'memos' => InertiaTest::all()
+            'memos' => InertiaTest::orderBy('id', 'desc')
+                ->get()
         ]);
     }
 
@@ -19,7 +20,6 @@ class InertiaTestController extends Controller
     {
         return Inertia::render('InertiaDemo/Create');
     }
-
 
     public function show($id)
     {
@@ -44,8 +44,18 @@ class InertiaTestController extends Controller
 
         return to_route('inertia.index')
         ->with([
-            'message' => 'メモを登録しました'
+            'message' => '新しいメモが登録されました'
         ]);
+    }
+
+    public function lgstore(Request $request)
+    {
+        $inertiaTest = new InertiaTest;
+        $inertiaTest -> title = '';
+        $inertiaTest -> content = '';
+        $inertiaTest ->save();
+
+        return to_route('inertia.index');
     }
 
     public function delete($id)
