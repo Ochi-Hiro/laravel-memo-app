@@ -11,13 +11,15 @@ export default function Authenticated({ user, children }) {
     <div className="min-h-screen bg-gray-100">
       <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between h-16 lg:h-24">
-            <Link href="/inertia/index" className='my-auto' >
+          <div className="flex justify-between h-16 lg:h-20">
+            <Link href="/inertia/index" className="my-auto">
               <div className="flex">
                 <div className="flex items-center">
                   <ApplicationLogo className="h-12 w-auto fill-current text-gray-800" />
                 </div>
-                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-xl">しんぷるメモ</div>
+                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-xl">
+                  しんぷるメモ
+                </div>
               </div>
             </Link>
 
@@ -49,8 +51,8 @@ export default function Authenticated({ user, children }) {
                   </Dropdown.Trigger>
 
                   <Dropdown.Content>
-                    <Dropdown.Link href={ route('profile.edit') }>Profile</Dropdown.Link>
-                    <Dropdown.Link href={ route('logout') } method="post" as="button">
+                    <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                    <Dropdown.Link href={route('logout')} method="post" as="button">
                       Log Out
                     </Dropdown.Link>
                   </Dropdown.Content>
@@ -85,16 +87,15 @@ export default function Authenticated({ user, children }) {
         </div>
 
         <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
-
           <div className="pt-4 pb-1 border-t border-gray-200">
             <div className="px-4">
-              <div className="font-medium text-base text-gray-800">{ user.name }</div>
-              <div className="font-medium text-sm text-gray-500">{ user.email }</div>
+              <div className="font-medium text-base text-gray-800">{user.name}</div>
+              <div className="font-medium text-sm text-gray-500">{user.email}</div>
             </div>
 
             <div className="mt-3 space-y-1">
-              <ResponsiveNavLink href={ route('profile.edit') }>Profile</ResponsiveNavLink>
-              <ResponsiveNavLink method="post" href={ route('logout') } as="button">
+              <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+              <ResponsiveNavLink method="post" href={route('logout')} as="button">
                 Log Out
               </ResponsiveNavLink>
             </div>
@@ -102,7 +103,7 @@ export default function Authenticated({ user, children }) {
         </div>
       </nav>
 
-      <main>{ children }</main>
+      <main>{children}</main>
     </div>
   );
 }

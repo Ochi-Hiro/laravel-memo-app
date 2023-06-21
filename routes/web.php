@@ -12,7 +12,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/inertia', [InertiaTestController::class, 'lgcreate'])->name('inertia.lgcreate');
     Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
     Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
-    Route::post('/inertia', [InertiaTestController::class, 'lgstore'])->name('inertia.lgstore');
     Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
 });
 
