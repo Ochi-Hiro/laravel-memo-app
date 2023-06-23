@@ -16,10 +16,10 @@ class InertiaTestController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return Inertia::render('InertiaDemo/Create');
-    }
+    // public function create()
+    // {
+    //     return Inertia::render('InertiaDemo/Create');
+    // }
 
     public function show($id)
     {
@@ -30,25 +30,25 @@ class InertiaTestController extends Controller
         ]);
     }
 
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => ['required', 'max:20'],
+    //         'content' => ['required']
+    //     ]);
+
+    //     $inertiaTest = new InertiaTest;
+    //     $inertiaTest ->title = $request->title;
+    //     $inertiaTest ->content = $request->content;
+    //     $inertiaTest ->save();
+
+    //     return to_route('inertia.index')
+    //     ->with([
+    //         'message' => '新しいメモが登録されました'
+    //     ]);
+    // }
+
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => ['required', 'max:20'],
-            'content' => ['required']
-        ]);
-
-        $inertiaTest = new InertiaTest;
-        $inertiaTest ->title = $request->title;
-        $inertiaTest ->content = $request->content;
-        $inertiaTest ->save();
-
-        return to_route('inertia.index')
-        ->with([
-            'message' => '新しいメモが登録されました'
-        ]);
-    }
-
-    public function lgstore(Request $request)
     {
         $inertiaTest = new InertiaTest;
         $inertiaTest -> title = '';

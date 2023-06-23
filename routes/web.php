@@ -12,7 +12,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/inertia', [InertiaTestController::class, 'lgcreate'])->name('inertia.lgcreate');
     Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
     Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
-    Route::post('/inertia', [InertiaTestController::class, 'lgstore'])->name('inertia.lgstore');
     Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
 });
 
@@ -26,11 +25,16 @@ Route::get('/', function () {
     ]);
 });
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+// テスト用
+Route::get('/inertiaTest', function () {
+    return Inertia::render('InertiaTest',[]);
 });
 
 require __DIR__.'/auth.php';
