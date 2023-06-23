@@ -4,13 +4,23 @@ import { Head } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import { router } from '@inertiajs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrash, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Index({ memos, auth }) {
   const firstMemo = memos[0];
   const { flash } = usePage().props;
   const [showContent, setShowContent] = useState(firstMemo);
+
+  const deleteConform = () => {
+    router.delete(`/inertia/${showContent.id}`, {
+      onBefore: () => confirm('このメモを削除しますか？'),
+      // onFinish: () => {
+      //   setShowContent(memos[0]);
+      // },
+    });
+  };
 
   return (
     <>
@@ -95,7 +105,8 @@ export default function Index({ memos, auth }) {
                     </button>
 
                     <button
-                      className="py-2 px-4 
+                      onClick={deleteConform}
+                      className="py-2 px-4
                             border border-gray-200 rounded-md 
                             bg-white hover:bg-gray-400 hover:text-gray-100"
                     >

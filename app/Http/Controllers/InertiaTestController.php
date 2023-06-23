@@ -16,10 +16,10 @@ class InertiaTestController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return Inertia::render('InertiaDemo/Create');
-    }
+    // public function create()
+    // {
+    //     return Inertia::render('InertiaDemo/Create');
+    // }
 
     public function show($id)
     {
