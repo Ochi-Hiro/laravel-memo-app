@@ -7,7 +7,7 @@ const MemoList = ({ memos }) => {
   const [, setShowContent] = useContext(MemoContext);
 
   return (
-    <div className="lg:w-1/3 bg-white overflow-hidden">
+    <div className="lg:w-1/3 bg-white overflow-y-scroll">
       {newMemos.map((memo) => (
         <div>
           <div className="hidden lg:inline">
