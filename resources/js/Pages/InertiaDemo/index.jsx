@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import MainHeader from '@/Layouts/MainHeader';
 import MemoList from '@/Components/MemoList';
-import MemoShow from '@/Components/MemoShow';
+import MemoMain from '@/Layouts/MemoMain';
 import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { createContext, useState } from 'react';
@@ -21,7 +21,7 @@ export default function Index({ memos, auth }) {
         <div className="bg-white">
           <div className="container h-[40rem] lg:flex mx-auto text-gray-600 body-font">
             <MemoList memos={memos} />
-            <MemoShow memos={memos} />
+            <MemoMain memos={memos} />
           </div>
         </div>
       </AuthenticatedLayout>
