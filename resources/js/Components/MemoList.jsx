@@ -20,11 +20,17 @@ const MemoList = ({ memos }) => {
                   TITLE
                 </h2>
                 <div className="hidden lg:inline-block">
-                  <h1 className="title-font text-xl font-medium text-gray-900 pb-3 truncate">
+                  <h1
+                    key={'T' + memo.id}
+                    className="title-font text-xl font-medium text-gray-900 pb-3 truncate"
+                  >
                     {memo.title}
                   </h1>
                 </div>
-                <p class="leading-relaxed mb-1 line-clamp-2 line-clamp-2 lg:line-clamp-1">
+                <p
+                  key={'C' + memo.id}
+                  className="leading-relaxed mb-1 line-clamp-2 line-clamp-2 lg:line-clamp-1"
+                >
                   {memo.content}
                 </p>
               </div>
@@ -38,10 +44,16 @@ const MemoList = ({ memos }) => {
                   <h2 className="tracking-widest text-xs title-font font-medium text-indigo-500 lg:pb-1">
                     TITLE
                   </h2>
-                  <h1 class="title-font text-lg font-medium text-gray-900 truncate">
+                  <h1
+                    key={'t' + memo.id}
+                    className="title-font text-lg font-medium text-gray-900 truncate"
+                  >
                     {memo.title}
                   </h1>
-                  <p class="leading-relaxed mb-1 line-clamp-2 line-clamp-2 lg:line-clamp-1">
+                  <p
+                    key={'c' + memo.id}
+                    className="leading-relaxed mb-1 line-clamp-2 line-clamp-2 lg:line-clamp-1"
+                  >
                     {memo.content}
                   </p>
                 </div>
