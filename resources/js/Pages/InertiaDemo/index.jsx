@@ -1,15 +1,23 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import MainHeader from '@/Layouts/MainHeader';
-import MemoList from '@/Components/MemoList';
+import MemoLists from '@/Layouts/MemoLists';
 import MemoMain from '@/Layouts/MemoMain';
 import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import useWindowSize from '@/hooks/useWindowSize';
 
 export const MemoContext = createContext();
 
 export default function Index({ memos, auth }) {
+  const [width, height] = useWindowSize();
+  const [isWide, setIsWide] = useState();
+  useEffect(() => {
+    width > 1024 ? setIsWide(true) : setIsWide(false);
+  }, [width]);
+
   const { flash } = usePage().props;
+
   const firstMemo = memos[0];
   const showContent = useState(firstMemo);
 
@@ -20,8 +28,8 @@ export default function Index({ memos, auth }) {
         <MainHeader flash={flash} />
         <div className="bg-white">
           <div className="container h-[40rem] lg:flex mx-auto text-gray-600 body-font">
-            <MemoList memos={memos} />
-            <MemoMain memos={memos} />
+            <MemoLists memos={memos} />
+            {isWide && <MemoMain memos={memos} />}
           </div>
         </div>
       </AuthenticatedLayout>
