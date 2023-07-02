@@ -1,11 +1,7 @@
-import { Link } from '@inertiajs/react';
-import { useContext } from 'react';
-import { MemoContext } from '@/Pages/InertiaDemo/index';
 import MemoCard from '@/Components/MemoCard';
 
 const MemoLists = ({ memos }) => {
   const newMemos = [...memos];
-  const [, setShowContent] = useContext(MemoContext);
 
   return (
     <div className="lg:w-1/3 bg-white overflow-y-scroll">

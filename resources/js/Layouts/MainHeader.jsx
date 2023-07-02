@@ -1,5 +1,5 @@
-import MemoButton from '@/Components/MemoButton';
 import { router } from '@inertiajs/react';
+import MemoButton from '@/Components/MemoButton';
 
 const MainHeader = ({ flash }) => {
   const newMemoConform = () => {
@@ -11,12 +11,10 @@ const MainHeader = ({ flash }) => {
       <div className="container flex mx-auto h-full items-center">
         <MemoButton
           onClick={newMemoConform}
-          bordercolor={'indigo-200'}
-          textcolor={'indigo-400'}
-          hoverbg={'indigo-200'}
-          className="ml-4"
+          textcolor={'indigo-500'}
+          className="ml-4 border-indigo-300 hover:bg-indigo-300"
         >
-          + 新しいメモ
+          <p>+ 新しいメモ</p>
         </MemoButton>
 
         <div className="ml-4 lg:ml-6 text-rose-400">
