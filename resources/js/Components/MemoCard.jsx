@@ -1,11 +1,14 @@
 import { useContext } from 'react';
 import { MemoContext } from '@/Pages/InertiaDemo/index';
+import { WindowContext } from '@/Pages/InertiaDemo/index';
 
 const MemoCard = ({ memo }) => {
   const [, setShowContent] = useContext(MemoContext);
+  const [isWide] = useContext(WindowContext);
 
   return (
     <>
+      {!isWide && <p>test</p>}
       <div
         onClick={() => setShowContent(memo)}
         className="py-4 lg:py-5 px-6 lg:px-3 h-30 border border-gray-200 rounded-lg hover:bg-gray-200"
