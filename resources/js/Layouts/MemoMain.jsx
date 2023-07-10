@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { MemoContext } from '@/Pages/InertiaDemo/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { router, useForm } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import MemoButton from '@/Components/MemoButton';
 
 const MemoMain = ({ memos }) => {
   const [viewContent, setViewContent] = useContext(MemoContext);
-  // console.log(viewContent);
 
   const deleteConform = () => {
     router.delete(`/inertia/${viewContent.id}`, {
@@ -29,24 +28,14 @@ const MemoMain = ({ memos }) => {
     setIsEdit((prev) => !prev);
   };
 
-  const { values, setValues, post, processing, errors } = useForm({
-    title: viewContent.title,
-    content: viewContent.content,
-  });
-
-  const handleChange = (e) => {
-    const key = e.target.id;
-    const value = e.target.value;
-    setValues((values) => ({
-      ...values,
-      [key]: value,
-    }));
-  };
-
   const saveConform = (e) => {
     e.preventDefault();
-    console.log(viewContent.id);
-    // router.post(`/inertia/update/${viewContent.id}`);
+    router.post(`/inertia/update/${viewContent.id}`, viewContent, {
+      onBefore: () => confirm('メモの変更内容を保存します'),
+      onFinish: () => {
+        setIsEdit((prev) => !prev);
+      },
+    });
   };
 
   return (
@@ -72,7 +61,7 @@ const MemoMain = ({ memos }) => {
                   <p className="mr-2">
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </p>
-                  <p>{isEdit ? '編集' : '保存'}</p>
+                  <p>編集</p>
                 </div>
               </MemoButton>
 
@@ -104,38 +93,33 @@ const MemoMain = ({ memos }) => {
                   type="text"
                   name="title"
                   value={viewContent.title}
-                  onChange={(e) => setViewContent('title', e.target.value)}
+                  onChange={(e) => setViewContent({ ...viewContent, title: e.target.value })}
                   className="text-4xl font-medium h-11 w-4/5"
                 />
               </div>
               <div className="flex m-0 ml-auto">
                 <MemoButton
-                  onClick={saveConform}
-                  bordercolor="red-500"
-                  textcolor="red-500"
-                  hoverbg="red-500"
+                  onClick={editConform}
+                  bordercolor={'gray-200'}
+                  textcolor={'gray-500'}
+                  hoverbg={'gray-400'}
                   className="px-6 mr-4 w-28"
+                >
+                  <div className="flex items-center">
+                    <p className="mr-2">×</p>
+                    <p>戻る</p>
+                  </div>
+                </MemoButton>
+
+                <MemoButton
+                  onClick={saveConform}
+                  className="w-24 border-red-500 bg-red-500 text-white hover:bg-white hover:text-red-500"
                 >
                   <div className="flex items-center">
                     <p className="mr-2">
                       <FontAwesomeIcon icon={faPenToSquare} />
                     </p>
                     <p>保存</p>
-                  </div>
-                </MemoButton>
-
-                <MemoButton
-                  onClick={deleteConform}
-                  bordercolor={'gray-200'}
-                  textcolor={'gray-500'}
-                  hoverbg={'gray-400'}
-                  className="w-24"
-                >
-                  <div className="flex items-center">
-                    <p className="mr-2">
-                      <FontAwesomeIcon icon={faTrash} />
-                    </p>
-                    <p>削除</p>
                   </div>
                 </MemoButton>
               </div>
@@ -145,7 +129,7 @@ const MemoMain = ({ memos }) => {
               name="content"
               rows="10"
               className="w-full"
-              onChange={(e) => setViewContent('content', e.target.value)}
+              onChange={(e) => setViewContent({ ...viewContent, content: e.target.value })}
               value={viewContent.content}
             />
           </form>
