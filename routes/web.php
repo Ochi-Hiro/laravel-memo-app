@@ -13,7 +13,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
     Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
     Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
-    Route::post('/inertia/update', [InertiaTestController::class, 'update'])->name('inertia.update');
+    Route::post('/inertia/update/{id}', [InertiaTestController::class, 'update'])->name('inertia.update');
 });
 
 

@@ -7,7 +7,7 @@ import MemoButton from '@/Components/MemoButton';
 
 const MemoMain = ({ memos }) => {
   const [viewContent, setViewContent] = useContext(MemoContext);
-  console.log(viewContent);
+  // console.log(viewContent);
 
   const deleteConform = () => {
     router.delete(`/inertia/${viewContent.id}`, {
@@ -33,7 +33,6 @@ const MemoMain = ({ memos }) => {
     title: viewContent.title,
     content: viewContent.content,
   });
-  console.log(values);
 
   const handleChange = (e) => {
     const key = e.target.id;
@@ -46,7 +45,8 @@ const MemoMain = ({ memos }) => {
 
   const saveConform = (e) => {
     e.preventDefault();
-    post(route('inertia.update'));
+    console.log(viewContent.id);
+    // router.post(`/inertia/update/${viewContent.id}`);
   };
 
   return (
@@ -103,8 +103,8 @@ const MemoMain = ({ memos }) => {
                   id="title"
                   type="text"
                   name="title"
-                  value={values.title}
-                  onChange={(e) => setValues('title', e.target.value)}
+                  value={viewContent.title}
+                  onChange={(e) => setViewContent('title', e.target.value)}
                   className="text-4xl font-medium h-11 w-4/5"
                 />
               </div>
@@ -145,9 +145,8 @@ const MemoMain = ({ memos }) => {
               name="content"
               rows="10"
               className="w-full"
-              // onChange={handleChange}
-              onChange={(e) => setValues('content', e.target.value)}
-              value={values.content}
+              onChange={(e) => setViewContent('content', e.target.value)}
+              value={viewContent.content}
             />
           </form>
         </div>
