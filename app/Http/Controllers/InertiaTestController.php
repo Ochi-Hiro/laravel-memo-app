@@ -35,6 +35,21 @@ class InertiaTestController extends Controller
         return to_route('inertia.index');
     }
 
+    public function update(Request $request)
+    {
+        dd($request);
+        // $memo = Memo::findOrFail($id);
+        $memo = Memo::findOrFail($request->id);
+        $memo->title = $requesr->title;
+        $memo->content = $requesr->content;
+        $memo->save();
+
+        return to_route('inertia.index')
+        ->with([
+            'message' => '編集内容を保存しました'
+        ]);
+    }
+
     public function delete($id)
     {
         $memo = Memo::findOrFail($id);
