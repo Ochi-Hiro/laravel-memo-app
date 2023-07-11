@@ -1,16 +1,21 @@
 import { useContext } from 'react';
 import { MemoContext } from '@/Pages/InertiaDemo/index';
 import { WindowContext } from '@/Pages/InertiaDemo/index';
+import { EditContext } from '@/Pages/InertiaDemo/index';
 
 const MemoCard = ({ memo }) => {
   const [, setShowContent] = useContext(MemoContext);
   const [isWide] = useContext(WindowContext);
+  const [, setIsEdit] = useContext(EditContext);
 
   return (
     <>
       {isWide ? (
         <div
-          onClick={() => setShowContent(memo)}
+          onClick={() => {
+            setShowContent(memo);
+            setIsEdit(true);
+          }}
           className="py-5 px-3 h-30 border border-gray-200 rounded-lg hover:bg-gray-200"
         >
           <div className="flex-grow h-full w-full pl-4">
