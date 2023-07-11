@@ -35,13 +35,13 @@ class InertiaTestController extends Controller
         return to_route('inertia.index');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        dd($request);
-        // $memo = Memo::findOrFail($id);
+        // dd($request);
+        $memo = Memo::findOrFail($id);
         $memo = Memo::findOrFail($request->id);
-        $memo->title = $requesr->title;
-        $memo->content = $requesr->content;
+        $memo->title = $request->title;
+        $memo->content = $request->content;
         $memo->save();
 
         return to_route('inertia.index')

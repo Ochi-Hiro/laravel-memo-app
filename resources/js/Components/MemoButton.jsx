@@ -10,7 +10,7 @@ const MemoButton = ({
   return (
     <button
       {...props}
-      className={`py-2 px-4 border rounded-lg bg-white hover:text-white
+      className={`py-2 px-4 border rounded-lg hover:text-white
         border-${bordercolor} 
         text-${textcolor}
         hover:bg-${hoverbg}
