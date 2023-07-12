@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+            ->constrained();
             $table->string('title');
             $table->string('content');
             $table->timestamps();
