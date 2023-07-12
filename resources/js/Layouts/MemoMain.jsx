@@ -29,12 +29,9 @@ const MemoMain = ({ memos }) => {
   };
 
   const saveConform = (e) => {
-    e.preventDefault();
     router.post(`/inertia/update/${viewContent.id}`, viewContent, {
       onBefore: () => confirm('メモの変更内容を保存します'),
-      onFinish: () => {
-        setIsEdit((prev) => !prev);
-      },
+      onFinish: () => setIsEdit(true),
     });
   };
 
@@ -55,7 +52,7 @@ const MemoMain = ({ memos }) => {
                 bordercolor="green-500"
                 textcolor="green-500"
                 hoverbg="green-500"
-                className="px-6 mr-4 w-28"
+                className="px-6 mr-4 w-28 hover:text-white"
               >
                 <div className="flex items-center">
                   <p className="mr-2">
@@ -70,7 +67,7 @@ const MemoMain = ({ memos }) => {
                 bordercolor={'gray-200'}
                 textcolor={'gray-500'}
                 hoverbg={'gray-400'}
-                className="w-24"
+                className="w-24 hover:text-white"
               >
                 <div className="flex items-center">
                   <p className="mr-2">
@@ -103,7 +100,7 @@ const MemoMain = ({ memos }) => {
                   bordercolor={'gray-200'}
                   textcolor={'gray-500'}
                   hoverbg={'gray-400'}
-                  className="px-6 mr-4 w-28"
+                  className="px-6 mr-4 w-28 hover:text-white"
                 >
                   <div className="flex items-center">
                     <p className="mr-2">×</p>
