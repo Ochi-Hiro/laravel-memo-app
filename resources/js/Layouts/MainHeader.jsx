@@ -12,7 +12,7 @@ const MainHeader = ({ flash }) => {
         <MemoButton
           onClick={newMemoConform}
           textcolor={'indigo-500'}
-          className="ml-4 border-indigo-300 hover:bg-indigo-300"
+          className="ml-4 border-indigo-300 hover:bg-indigo-300 hover:text-white"
         >
           <p>+ 新しいメモ</p>
         </MemoButton>

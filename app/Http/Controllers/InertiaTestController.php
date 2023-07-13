@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Memo;
+use Illuminate\Support\Facades\Auth;
 
 class InertiaTestController extends Controller
 {
     public function index()
     {
         return Inertia::render('InertiaDemo/index',[
-            'memos' => Memo::orderBy('id', 'desc')
+            'memos' => Memo::where('user_id', Auth::id())
+                ->orderBy('id', 'desc')
                 ->get()
         ]);
     }
@@ -28,6 +30,7 @@ class InertiaTestController extends Controller
     public function store(Request $request)
     {
         $inertiaTest = new Memo;
+        $inertiaTest -> user_id = Auth::id();
         $inertiaTest -> title = '';
         $inertiaTest -> content = '';
         $inertiaTest ->save();
