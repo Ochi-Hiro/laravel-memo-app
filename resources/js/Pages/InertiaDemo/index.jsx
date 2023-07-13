@@ -9,6 +9,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 
 export const MemoContext = createContext();
 export const WindowContext = createContext();
+export const EditContext = createContext();
 
 export default function Index({ memos, auth }) {
   const [width, height] = useWindowSize();
@@ -19,6 +20,8 @@ export default function Index({ memos, auth }) {
 
   const nowWide = [isWide, setIsWide];
 
+  const editToggle = useState(true);
+
   const { flash } = usePage().props;
 
   const firstMemo = memos[0];
@@ -27,16 +30,18 @@ export default function Index({ memos, auth }) {
   return (
     <WindowContext.Provider value={nowWide}>
       <MemoContext.Provider value={showContent}>
-        <AuthenticatedLayout user={auth.user}>
-          <Head title="Index" />
-          <MainHeader flash={flash} />
-          <div className="bg-white">
-            <div className="container h-[40rem] lg:flex mx-auto text-gray-600 body-font">
-              <MemoLists memos={memos} />
-              {isWide && <MemoMain memos={memos} />}
+        <EditContext.Provider value={editToggle}>
+          <AuthenticatedLayout user={auth.user}>
+            <Head title="Index" />
+            <MainHeader flash={flash} />
+            <div className="bg-white">
+              <div className="container h-[40rem] lg:flex mx-auto text-gray-600 body-font">
+                <MemoLists memos={memos} />
+                {isWide && <MemoMain memos={memos} />}
+              </div>
             </div>
-          </div>
-        </AuthenticatedLayout>
+          </AuthenticatedLayout>
+        </EditContext.Provider>
       </MemoContext.Provider>
     </WindowContext.Provider>
   );

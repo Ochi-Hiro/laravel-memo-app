@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { MemoContext } from '@/Pages/InertiaDemo/index';
+import { EditContext } from '@/Pages/InertiaDemo/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { router } from '@inertiajs/react';
@@ -23,7 +24,7 @@ const MemoMain = ({ memos }) => {
     });
   };
 
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useContext(EditContext);
   const editConform = () => {
     setIsEdit((prev) => !prev);
   };
